@@ -1,0 +1,191 @@
+{
+    "name": "drupal-composer/drupal-project",
+    "description": "Project template for Drupal 8 projects with composer",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "",
+            "role": ""
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "harvesthq/chosen",
+                "version": "1.5.1",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/harvesthq/chosen/releases/download/v1.5.1/chosen_v1.5.1.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=7.3.0",
+        "codegyre/robo": "^0.7.2",
+        "composer/installers": "^1.0.20",
+        "cweagans/composer-patches": "~1.0",
+        "dompdf/dompdf": "^0.8.0",
+        "drupal/admin_toolbar": "^1.17",
+        "drupal/age_field_formatter": "^2.1",
+        "drupal/authorization": "dev-8.x-1.x#b4bf0504fd66d9c9bd04abb18b6bba959ddd8d85",
+        "drupal/blockgroup": "^1.0",
+        "drupal/bootstrap": "^3.5",
+        "drupal/cck_select_other": "^1.4",
+        "drupal/chosen": "~8",
+        "drupal/config_split": "^1.4",
+        "drupal/config_update": "^1.1",
+        "drupal/console": "^1.6",
+        "drupal/core": "^8.9.13",
+        "drupal/core-composer-scaffold": "^8.8.0",
+        "drupal/country": "1.0.0-beta3",
+        "drupal/cshs": "1.0-beta3",
+        "drupal/csv_serialization": "^1.0",
+        "drupal/ctools": "^3.0",
+        "drupal/diff": "1.x-dev",
+        "drupal/ds": "3.1+2-dev",
+        "drupal/entity_print": "dev-2.x#e44245af140441f42e69a6865f809bcf7569f3d5",
+        "drupal/entity_reference_revisions": "^1.6",
+        "drupal/entityconnect": "^2.0-alpha1",
+        "drupal/facets": "dev-1.x#345525d13538c57a8a190f5b71aaa9ba9e723b02",
+        "drupal/field_group": "3.0-rc1",
+        "drupal/geolocation": "^1.10",
+        "drupal/google_analytics": "^3.0",
+        "drupal/group": "dev-1.x#11ef18a09c7d2c220a10a485802ffec155068a7e",
+        "drupal/inline_entity_form": "1.0-beta1",
+        "drupal/ldap": "dev-3.x#ecb7ead2bbd2cb268de565a44ad173b0b8b4778d",
+        "drupal/markup": "1.0.0-beta1",
+        "drupal/memcache": "^2.2",
+        "drupal/migrate_plus": "^4.2",
+        "drupal/migrate_tools": "^4.1",
+        "drupal/page_manager": "^4.0-beta2",
+        "drupal/panelizer": "4.0",
+        "drupal/panels": "^4.4",
+        "drupal/paragraphs": "^1.5",
+        "drupal/path_alias_xt": "1.x-dev",
+        "drupal/pathauto": "^1.0",
+        "drupal/quicktabs": "3.0-alpha1",
+        "drupal/radix_layouts": "4.0",
+        "drupal/role_delegation": "1.0-alpha1",
+        "drupal/search_api": "1.7",
+        "drupal/shield": "^1.2",
+        "drupal/simple_block": "1.0-beta1",
+        "drupal/smtp": "1.0-beta3",
+        "drupal/taxonomy_access_fix": "^2.0",
+        "drupal/term_reference_tree": "dev-1.x#b44575344b9748fb4054fdeaf5e42ca6c7348752",
+        "drupal/views_field_view": "1.0-beta2",
+        "drupal/views_rest_feed": "1.0-alpha1",
+        "drush/drush": "~8",
+        "erc/pdfmerger": "^0.0.1",
+        "harvesthq/chosen": "^1.5",
+        "iio/libmergepdf": "~3.0",
+        "league/csv": "^7.1",
+        "php-ews/php-ews": "^1.0@RC",
+        "vlucas/phpdotenv": "^4.0",
+        "webflo/drupal-finder": "^0.2.1|^1.0",
+        "zaporylie/composer-drupal-optimizations": "^1.1"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^8.8.0",
+        "drupal/devel": "1.x-dev",
+        "drupal/taxonomy_manager": "^1.0@alpha",
+        "drupal/coder": "^8.3"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ],
+        "files": [
+            "load.environment.php"
+        ]
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            }
+        },
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ]
+        },
+        "patches": {
+            "drupal/field_default_token": {
+                "Wrong value on field settings form": "https://www.drupal.org/files/issues/field-default-token-2841292-3-wrong-value-for-settings.patch",
+                "Error with image field": "https://www.drupal.org/files/issues/field-default-token-2854384-2-image-field-error.patch"
+            },
+            "drupal/blockgroup": {
+                "Configuration becomes invalid: entity type does not exists": "https://www.drupal.org/files/issues/d8_blockgroup_config.patch"
+            },
+            "drupal/entity_print": {
+                "Theme suggestions https://www.drupal.org/node/2748149#comment-12075631": "https://www.drupal.org/files/issues/theme_suggestions-2748149-13.patch"
+            },
+            "drupal/group": {
+                "2869554 - The group_roles field gets created too early during configuration sync.": "https://www.drupal.org/files/issues/2869554-12.patch",
+                "2929037 - node grants not applied for advanced outsider permissions": "https://www.drupal.org/files/issues/group-node_grants_advanced_outsider-2929037-5-D8.patch",
+                "3068918 - 8.8.x: PHP Fatal error: Uncaught Error: Call to a member function getBaseFieldDefinitions() on null - related to GroupContentViewsData.php": "https://www.drupal.org/files/issues/2019-07-19/3068918.patch"
+            },
+            "drupal/facets": {
+                "https://www.drupal.org/project/facets/issues/2956898": "https://www.drupal.org/files/issues/2018-04-12/2956898_1.patch"
+            },
+            "drupal/term_reference_tree": {
+                "Fix for Drupal 8.6.x https://www.drupal.org/project/term_reference_tree/issues/2996263#comment-12828956": "https://www.drupal.org/files/issues/2018-10-25/term_reference_tree-taxonomy_term_hierarchy_table_error-2996263-20.patch"
+            },
+            "drupal/search_api": {
+                "3021757 - Deprecated function: strpos(): Non-string needles will be interpreted as strings in the future. Use an explicit chr() call to preserve the current behavior": "https://www.drupal.org/files/issues/2018-12-20/3021757_search_api.patch"
+            },
+            "drupal/cck_select_other": {
+                "3126148 - Not compatible with bootstrap theme": "https://www.drupal.org/files/issues/2020-05-06/3126148-6.patch"
+            }
+        }
+    }
+}
